@@ -339,6 +339,9 @@ composer require wapmorgan/ncursesobjects dev-master
     ```
     apt-get install libncurses5-dev ncurses-doc libncursesw5-dev
 
+    #Optioneel   
+    apt-get install php8.1-dev
+   
     wget https://github.com/beekmanbv/mod_ncurses/archive/refs/heads/master.zip
     
     unzip master.zip
