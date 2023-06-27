@@ -335,13 +335,41 @@ composer require wapmorgan/ncursesobjects dev-master
 
 # Installation of ncurses binding
 
-1. Install pecl. It is in a package named `php5-dev` in Ubuntu (`php-pear` in ArchLinux)
-2. Install the ncurses binding.
+1. Install the ncurses binding.
     ```
-    sudo pecl install ncurses
+    apt-get install libncurses5-dev ncurses-doc libncursesw5-dev
+
+    wget https://github.com/beekmanbv/mod_ncurses/archive/refs/heads/master.zip
+    
+    unzip master.zip
+    cd mod_ncurses-master
+    
+    phpize8.1
+    ./configure --with-php-config=/usr/bin/php-config8.1
+    make clean
+    make
+    make install
+    
+    phpize8.2
+    ./configure --with-php-config=/usr/bin/php-config8.2
+    make clean
+    make
+    make install
+    
+    cat <<'EndOfHereDoc' >/etc/php/8.1/mods-available/ncurses.ini
+    ; configuration for php ncurses module
+    ; priority=20
+    extension=ncurses.so
+    EndOfHereDoc
+    
+    cat <<'EndOfHereDoc' >/etc/php/8.2/mods-available/ncurses.ini
+    ; configuration for php ncurses module
+    ; priority=20
+    extension=ncurses.so
+    EndOfHereDoc
     ```
 
-3. Include the php extension. Add follows in your php.ini:
+2. Include the php extension.
     ```
-    extension=ncurses.so
+    phpenmod ncurses
     ```
