@@ -35,7 +35,7 @@ This is a php library that provides ncurses functionality in OOP interface.
 
 # Installation
 Install it via Composer:
-```
+```shell
 composer require beekmanbv/ncursesobjects dev-master
 ```
 
