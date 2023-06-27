@@ -330,7 +330,7 @@ composer require beekmanbv/ncursesobjects dev-master
 # Installation of ncurses binding
 
 1. Install the ncurses binding.
-    ```
+    ```sh
     apt-get install libncurses5-dev ncurses-doc libncursesw5-dev
 
     #Optioneel   
@@ -367,6 +367,6 @@ composer require beekmanbv/ncursesobjects dev-master
     ```
 
 2. Include the php extension.
-    ```
+    ```sh
     phpenmod ncurses
     ```
