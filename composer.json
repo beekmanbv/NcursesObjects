@@ -1,10 +1,7 @@
 {
-    "name": "wapmorgan/ncursesobjects",
+    "name": "beekmanbv/ncursesobjects",
     "description": "This library implements ncurses functionality in OOP way.",
     "license": "MIT",
-    "require": {
-        "ext-ncurses": "*"
-    },
     "autoload": {
         "psr-4": {
             "wapmorgan\\NcursesObjects\\": "src"
