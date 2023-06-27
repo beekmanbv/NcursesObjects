@@ -61,7 +61,7 @@ class Window {
 	public function __destruct() {
 		if ($this->panel !== null)
 			$this->panel = null;
-		ncurses_delwin($this->windowResource);
+//		ncurses_delwin($this->windowResource);
 	}
 
 	/**
