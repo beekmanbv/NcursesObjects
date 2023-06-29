@@ -2,12 +2,6 @@ Ncurses Objects
 ==================
 This is a php library that provides ncurses functionality in OOP interface.
 
-[![Composer package](http://composer.network/badge/wapmorgan/ncursesobjects)](https://packagist.org/packages/wapmorgan/ncursesobjects)
-[![Latest Stable Version](https://poser.pugx.org/wapmorgan/ncursesobjects/v/stable)](https://packagist.org/packages/wapmorgan/ncursesobjects)
-[![Total Downloads](https://poser.pugx.org/wapmorgan/ncursesobjects/downloads)](https://packagist.org/packages/wapmorgan/ncursesobjects)
-[![License](https://poser.pugx.org/wapmorgan/ncursesobjects/license)](https://packagist.org/packages/wapmorgan/ncursesobjects)
-[![Latest Unstable Version](https://poser.pugx.org/wapmorgan/ncursesobjects/v/unstable)](https://packagist.org/packages/wapmorgan/ncursesobjects)
-
 1. Basics
 2. Installation
 3. Simple application example
@@ -41,8 +35,8 @@ This is a php library that provides ncurses functionality in OOP interface.
 
 # Installation
 Install it via Composer:
-```
-composer require wapmorgan/ncursesobjects dev-master
+```shell
+composer require beekmanbv/ncursesobjects dev-master
 ```
 
 # Simple application example
@@ -336,7 +330,7 @@ composer require wapmorgan/ncursesobjects dev-master
 # Installation of ncurses binding
 
 1. Install the ncurses binding.
-    ```
+    ```sh
     apt-get install libncurses5-dev ncurses-doc libncursesw5-dev
 
     #Optioneel   
@@ -373,6 +367,6 @@ composer require wapmorgan/ncursesobjects dev-master
     ```
 
 2. Include the php extension.
-    ```
+    ```sh
     phpenmod ncurses
     ```
