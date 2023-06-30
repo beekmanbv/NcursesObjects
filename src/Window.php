@@ -112,7 +112,6 @@ class Window
             $this->border();
         } elseif ($style == self::BORDER_STYLE_DOUBLE) {
             $this->border(226, 186, 205, 205, 201, 187, 200, 188);
-//            $this->border(ord('║'), ord('║'), ord('═'), ord('═'), ord('╔'), ord('╗'), ord('╚'), ord('╝'));
         }
         return $this;
     }
@@ -132,11 +131,36 @@ class Window
      * @param  string  $title  Title
      * @return Window This object
      */
-    public function title($title)
+    public function title($title, $position = null)
     {
+        switch (strtolower($position)) {
+            case 'right' :
+                $title = str_pad($title, $this->columns - 2, pad_type: STR_PAD_LEFT);
+                break;
+            case 'left' :
+                $title = str_pad($title, $this->columns - 2, pad_type: STR_PAD_RIGHT);
+                break;
+            case 'center' :
+                $title = str_pad('', floor(($this->columns - 2 - strlen($title)) / 2), ' ').$title;
+                $title = str_pad($title, $this->columns - 2, pad_type: STR_PAD_RIGHT);
+                break;
+        }
+
         $this->moveCursor(1, 0);
-        $this->drawStringHere($title, NCURSES_A_REVERSE);
+        $this->draw($title, attributes: NCURSES_A_REVERSE);
         return $this;
+    }
+
+
+    public function line($x = 0, $y = 0, $length = null)
+    {
+        $this->moveCursor($x, $y);
+
+        if (is_null($length)) {
+            $length = $this->columns - $this->x - $x;
+        }
+
+        ncurses_whline($this->windowResource, 0, $length);
     }
 
     /**
@@ -157,14 +181,17 @@ class Window
      */
     public function erase()
     {
-//        ncurses_werase($this->windowResource);
-
-//        ncurses_wclear($this->windowResource);
-        ncurses_delwin($this->windowResource);
-//        ncurses_wrefresh($this->windowResource);
+        ncurses_werase($this->windowResource);
 
         return $this;
     }
+
+    public function clear()
+    {
+        ncurses_wclear($this->windowResource);
+        return $this;
+    }
+
 
     /**
      * Moves a cursor
@@ -184,31 +211,13 @@ class Window
      * Draws a string at current position
      * @param  string  $string  String
      * @param  integer  $attributes  Ncurses attributes (eg. NCURSES_A_REVERSE)
+     * @param  integer  $colorPair  Ncurses colorpair
      * @return Window This object
      * @see http://pubs.opengroup.org/onlinepubs/007908799/xcurses/curses.h.html for available attributes (WA_LOW => NCURSES_A_LOW)
      */
-    public function drawStringHere($string, $attributes = 0)
-    {
-        ncurses_wattron($this->windowResource, $attributes);
-        ncurses_waddstr($this->windowResource, $string);
-        ncurses_wattroff($this->windowResource, $attributes);
-        return $this;
-    }
-
-    /**
-     * Draws a string at current position
-     * @param  string  $string  String
-     * @param  integer  $attributes  Ncurses attributes (eg. NCURSES_A_REVERSE)
-     * @return Window This object
-     * @see http://pubs.opengroup.org/onlinepubs/007908799/xcurses/curses.h.html for available attributes (WA_LOW => NCURSES_A_LOW)
-     */
-    public function drawString($string, $x = null, $y = null, $attributes = 0, $colorPair = null)
+    public function draw($string, $x = null, $y = null, $attributes = 0, $colorPair = null)
     {
         if (!is_null($colorPair) && ncurses_has_colors()) {
-//        ncurses_init_pair(1, NCURSES_COLOR_YELLOW, NCURSES_COLOR_BLUE);
-//        ncurses_wcolor_set($this->windowResource,1);
-//        ncurses_mvaddstr(10, 10, "Hello world! Yellow on blue text!");
-
             ncurses_wcolor_set($this->windowResource, $colorPair);
         }
 
