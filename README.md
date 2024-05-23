@@ -346,38 +346,37 @@ composer require beekmanbv/ncursesobjects dev-master
     make clean
     make
     make install
+   
+    cat <<'EndOfHereDoc' >/etc/php/8.1/mods-available/ncurses.ini
+    ; configuration for php ncurses module
+    ; priority=20
+    extension=ncurses.so
+    EndOfHereDoc
     
     phpize8.2
     ./configure --with-php-config=/usr/bin/php-config8.2
     make clean
     make
     make install
-       
-    cat <<'EndOfHereDoc' >/etc/php/8.1/mods-available/ncurses.ini
+   
+    cat <<'EndOfHereDoc' >/etc/php/8.2/mods-available/ncurses.ini
     ; configuration for php ncurses module
     ; priority=20
     extension=ncurses.so
     EndOfHereDoc
-   
-    
+  
     phpize8.3
     ./configure --with-php-config=/usr/bin/php-config8.3
     make clean
     make
     make install
        
-    cat <<'EndOfHereDoc' >/etc/php/8.1/mods-available/ncurses.ini
+    cat <<'EndOfHereDoc' >/etc/php/8.3/mods-available/ncurses.ini
     ; configuration for php ncurses module
     ; priority=20
     extension=ncurses.so
     EndOfHereDoc
    
-    
-    cat <<'EndOfHereDoc' >/etc/php/8.2/mods-available/ncurses.ini
-    ; configuration for php ncurses module
-    ; priority=20
-    extension=ncurses.so
-    EndOfHereDoc
     ```
 
 2. Include the php extension.
